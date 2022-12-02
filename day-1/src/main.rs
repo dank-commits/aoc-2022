@@ -20,11 +20,9 @@ fn get_cals(file: &File, elf_idx: usize) {
     let lines = reader.lines();
     for line in lines {
         let line = line.unwrap();
-        if line == "" {
-            elf_idx += 1;
-        } else {
-            let cals = line.parse::<i32>().unwrap();
-            elf_array[elf_idx] += cals;
+        match line.as_str() {
+            "" => elf_idx += 1,
+            _ => elf_array[elf_idx] += line.parse::<i32>().unwrap(),
         }
     }
     let max = elf_array.iter().max().unwrap();
@@ -33,7 +31,6 @@ fn get_cals(file: &File, elf_idx: usize) {
     elf_array.reverse();
     let top_three_sum = elf_array[0] + elf_array[1] + elf_array[2];
     println!("Top three sum: {}", top_three_sum);
-
 }
 
 fn main() {
