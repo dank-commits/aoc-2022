@@ -24,9 +24,6 @@ impl Section {
     }
 }
 
-
-
-
 fn main() {
     let file = File::open("input.txt").unwrap();
     let reader = BufReader::new(file);
